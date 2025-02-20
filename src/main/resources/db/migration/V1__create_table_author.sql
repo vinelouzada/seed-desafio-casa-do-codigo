@@ -1,0 +1,8 @@
+CREATE TABLE author
+(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    description TEXT NOT NULL,
+    created_at DATETIME NOT NULL
+);
