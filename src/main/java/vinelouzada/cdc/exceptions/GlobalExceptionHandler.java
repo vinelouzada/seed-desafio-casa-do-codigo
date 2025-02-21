@@ -12,8 +12,8 @@ import java.util.List;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({EmailAlreadyExistsException.class})
-    public ResponseEntity<ExceptionDetails> handleEmailAlreadyExistsException(EmailAlreadyExistsException e) {
+    @ExceptionHandler({EmailAlreadyExistsException.class, NameAlreadyExistsException.class})
+    public ResponseEntity<ExceptionDetails> handleEmailAlreadyExistsException(Exception e) {
         ExceptionDetails exceptionDetails = new ExceptionDetails(e.getMessage(), HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(exceptionDetails.httpStatus()).body(exceptionDetails);
     }
