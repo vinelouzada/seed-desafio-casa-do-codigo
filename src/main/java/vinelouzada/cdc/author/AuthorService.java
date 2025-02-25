@@ -1,5 +1,6 @@
 package vinelouzada.cdc.author;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import vinelouzada.cdc.exceptions.EmailAlreadyExistsException;
 
@@ -16,5 +17,9 @@ public class AuthorService {
         if (authorRepository.existsByEmail(author.getEmail())) throw new EmailAlreadyExistsException();
 
         return authorRepository.save(author);
+    }
+
+    public Author getAuthor(Long authorId) {
+        return authorRepository.findById(authorId).orElseThrow(EntityNotFoundException::new);
     }
 }
