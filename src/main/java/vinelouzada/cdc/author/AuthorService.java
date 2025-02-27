@@ -20,6 +20,6 @@ public class AuthorService {
     }
 
     public Author getAuthor(Long authorId) {
-        return authorRepository.findById(authorId).orElseThrow(EntityNotFoundException::new);
+        return authorRepository.findById(authorId).orElseThrow(() -> new EntityNotFoundException("Author not found"));
     }
 }

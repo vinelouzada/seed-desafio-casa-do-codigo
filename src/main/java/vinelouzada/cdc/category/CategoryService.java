@@ -20,6 +20,6 @@ public class CategoryService {
     }
 
     public Category getCategory(Long categoryId) {
-        return categoryRepository.findById(categoryId).orElseThrow(EntityNotFoundException::new);
+        return categoryRepository.findById(categoryId).orElseThrow(() -> new EntityNotFoundException("Category not found"));
     }
 }

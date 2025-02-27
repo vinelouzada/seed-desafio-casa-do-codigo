@@ -1,5 +1,6 @@
 package vinelouzada.cdc.exceptions;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,5 +23,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<List<FormExceptionDetails>> handleArgumentNotValidException(MethodArgumentNotValidException e) {
         List<FormExceptionDetails> formExceptionDetails = e.getFieldErrors().stream().map(FormExceptionDetails::new).toList();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formExceptionDetails);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionDetails> handleEntityNotFoundException(EntityNotFoundException e) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails(e.getMessage(), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(exceptionDetails.httpStatus()).body(exceptionDetails);
     }
 }

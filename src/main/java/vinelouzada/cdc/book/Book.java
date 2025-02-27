@@ -8,6 +8,7 @@ import vinelouzada.cdc.category.Category;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Book {
@@ -93,6 +94,10 @@ public class Book {
         return publishedAt;
     }
 
+    public String getPublishedAtFormatted() {
+        return publishedAt.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -103,5 +108,13 @@ public class Book {
 
     public Long getAuthorId() {
         return author.getId();
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
