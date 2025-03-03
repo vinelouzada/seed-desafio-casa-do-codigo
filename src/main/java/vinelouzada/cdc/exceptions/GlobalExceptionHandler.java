@@ -25,9 +25,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formExceptionDetails);
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ExceptionDetails> handleEntityNotFoundException(EntityNotFoundException e) {
         ExceptionDetails exceptionDetails = new ExceptionDetails(e.getMessage(), HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(exceptionDetails.httpStatus()).body(exceptionDetails);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionDetails> handleIllegalArgumentException(IllegalArgumentException e) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails(e.getMessage(), HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(exceptionDetails.httpStatus()).body(exceptionDetails);
     }
 }
