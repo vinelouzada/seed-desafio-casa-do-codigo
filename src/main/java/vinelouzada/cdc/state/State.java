@@ -33,4 +33,17 @@ public class State {
     public Long getCountryId() {
         return country.getId();
     }
+
+    public boolean belongsToCountry(Country country) {
+        return this.country.equals(country);
+    }
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }

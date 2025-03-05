@@ -1,7 +1,6 @@
 package vinelouzada.cdc.country;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +17,7 @@ public class CountryService {
         return countryRepository.save(country);
     }
 
-    public Country getCountry(Long countryId) {
+    public Country getById(Long countryId) {
         return countryRepository.findById(countryId).orElseThrow(() -> new EntityNotFoundException("Country not found"));
     }
 }

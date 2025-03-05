@@ -117,4 +117,21 @@ public class Book {
     public Category getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", tableOfContents='" + tableOfContents + '\'' +
+                ", price=" + price +
+                ", numberOfPages=" + numberOfPages +
+                ", isbn='" + isbn + '\'' +
+                ", publishedAt=" + publishedAt +
+                ", createdAt=" + createdAt +
+                ", category=" + category +
+                ", author=" + author +
+                '}';
+    }
 }

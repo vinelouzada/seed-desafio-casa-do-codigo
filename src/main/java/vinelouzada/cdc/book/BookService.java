@@ -26,4 +26,8 @@ public class BookService {
 
         return bookRepository.save(book);
     }
+
+    public List<Book> getBooksByIds(List<Long> ids) {
+        return bookRepository.findAllById(ids);
+    }
 }

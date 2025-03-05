@@ -14,7 +14,7 @@ public record CreateStateRequest(
         Long countryId
 ) {
     public State toModel(CountryService countryService) {
-        Country country = countryService.getCountry(countryId);
+        Country country = countryService.getById(countryId);
         return new State(name, country);
     }
 }
