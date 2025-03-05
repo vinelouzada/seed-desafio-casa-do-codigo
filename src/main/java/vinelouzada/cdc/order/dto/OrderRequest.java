@@ -34,14 +34,11 @@ public record OrderRequest(
         );
     }
 
-    // A gente passa uma Order e sai uma Lista de Item
     public Function<Order, List<Item>> toItems(BookService bookService) {
-        //buscar todos os ID
         List<Book> books = bookService.getBooksByIds(cart.items().stream()
                 .map(ItemDTO::id)
                 .collect(Collectors.toList()));
 
-        //relaciona book com quantidade
         Map<Book, Integer> bookAndQuantity = cart.items().stream()
                 .collect(Collectors.toMap(
                         item -> books.stream()
@@ -51,7 +48,6 @@ public record OrderRequest(
                         ItemDTO::quantity
                 ));
 
-        //cria novo item
         return (order) -> {
             return bookAndQuantity.entrySet().stream()
                     .map(x -> new Item(x.getKey(), x.getKey().getPrice(), x.getValue(), order))
